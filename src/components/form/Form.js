@@ -1,3 +1,4 @@
+import { ErrorForm } from '../../error/ErrorForm'
 import { Field } from '../field/Field'
 import { FieldDate } from '../fieldDate/FieldData'
 import './form.css'
@@ -28,8 +29,23 @@ export class FormElement {
     })
   }
 
+  handlerChange() {
+    Object.values(this.fields).forEach(el => {
+      el.input.addEventListener('input', () => {
+        this.checkError()
+      })
+    })
+  }
+
+  checkError() {
+    ErrorForm.checkFieldText(this.fields.firstName, 2, 25)
+    ErrorForm.checkFieldText(this.fields.lastName, 2, 25)
+    ErrorForm.checkDateError(this.fields.date)
+  }
+
   render(main) {
     this.createForm()
+    this.handlerChange()
     this.form.classList.add('form-container')
     main.append(this.form)
   }

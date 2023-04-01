@@ -11,16 +11,18 @@ export class Field {
     this.name = name
     this.placeholderText = placeholderText
     this.type = type
+
+    this.errorField = document.createElement('span')
   }
 
   checkActive() {
     this.input.addEventListener('focus', () => {
-      this.container.classList.add('active')
+      this.placeholder.classList.add('active')
     })
 
     this.input.addEventListener('blur', () => {
       if (!this.input.value.length) {
-        this.container.classList.remove('active')
+        this.placeholder.classList.remove('active')
       }
     })
   }
@@ -31,14 +33,32 @@ export class Field {
     this.container.classList.add('field')
     this.wrapper.append(this.input)
     this.wrapper.append(this.placeholder)
+
+    this.input.name = this.name
     
     this.wrapper.insertAdjacentHTML('beforeend', this.icon)
     this.container.append(this.wrapper)
   }
 
+  addError(text) {
+    this.errorField.textContent = text
+    this.errorField.classList.add('active')
+  }
+
+  clearError() {
+    this.errorField.textContent = ''
+    this.errorField.classList.remove('active')
+  }
+
+  errorHandler() {
+    this.errorField.classList.add('error-field')
+    this.container.append(this.errorField)
+  }
+
   render(node) {
     this.createField()
     this.checkActive()
+    this.errorHandler()
     node.append(this.container)
   }
 }
