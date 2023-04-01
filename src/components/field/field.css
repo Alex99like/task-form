@@ -33,11 +33,15 @@
   width: 30px;
   height: 30px;
   transition: .3s;
+  box-shadow: 0 0 3px 2px rgba(7, 143, 7, 0.666);
+  border-radius: 50%;
 }
 
 .form-container .field .failed,
 .form-container .field-date .failed {
   background-image: url('../../../assets/cancel.png');
+  box-shadow: 0 0 3px 2px rgba(137, 8, 34, 0.478);
+  border-radius: 50%;
 }
 
 .form-container .field .success.active,

@@ -18,7 +18,7 @@ export class FormElement {
     this.fields = {
       firstName: new Field('first-name', 'First Name', 'text', icons.firstName),
       lastName: new Field('last-name', 'Last Name', 'text', icons.lastName),
-      date: new FieldDate('date'),
+      date: new FieldDate('date', 'Date of Birth'),
       email: new Field('email', 'Email', 'email', icons.email),
       password: new Field('password', 'Password', 'password', icons.password),
       passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.repeatPassword)

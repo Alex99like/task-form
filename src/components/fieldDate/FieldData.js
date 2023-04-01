@@ -1,15 +1,18 @@
 import './fieldDate.css'
 
 export class FieldDate {
-  constructor(name) {
+  constructor(name, placeholder) {
     this.container = document.createElement('label')
 
     this.input = document.createElement('input')
+    this.placeholder = document.createElement('span')
     this.input.type = 'date'
     this.name = name
     this.input.name = name
     this.errorField = document.createElement('span')
     this.error = ''
+
+    this.placeholderText = placeholder
 
     this.success = document.createElement('div')
     this.failed = document.createElement('div')
@@ -18,6 +21,8 @@ export class FieldDate {
   createField() {
     this.container.classList.add('field-date')
 
+    this.placeholder.textContent = this.placeholderText
+    this.container.append(this.placeholder)
     this.success.classList.add('success')
     this.container.append(this.success)
 
@@ -25,6 +30,18 @@ export class FieldDate {
     this.container.append(this.failed)
 
     this.container.append(this.input)
+  }
+
+  checkActive() {
+    this.input.addEventListener('focus', () => {
+      this.placeholder.classList.add('active')
+      this.input.classList.add('focus')
+    })
+
+    this.input.addEventListener('blur', () => {
+      this.input.classList.remove('focus')
+      this.placeholder.classList.remove('active')  
+    })
   }
 
   addError(text) {
@@ -55,6 +72,7 @@ export class FieldDate {
   render(node) {
     this.errorHandler()
     this.createField()
+    this.checkActive()
     node.append(this.container)
   }
 }
