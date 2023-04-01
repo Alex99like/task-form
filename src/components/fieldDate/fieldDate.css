@@ -1,23 +1,32 @@
 .field-date {
   position: relative;
   cursor: pointer;
+  
+}
+
+.form-container .field-date .success,
+.form-container .field-date .failed {
+  top: 5px;
 }
 
 .field-date input[type='date'] {
   font-size: 20px;
   color: aliceblue;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, .5);
+  border: 2px solid rgba(61, 57, 57, 0.5);
   border-radius: 10px;
-  background: transparent;
-  padding: 10px;
+  background: #2b2b2cb5;
+  padding: 5px 10px;
   backdrop-filter: blur(20px);
 }
 
 ::-webkit-calendar-picker-indicator{
     background-color: transparent;
+    content: '<ion-icon name="calendar" class="calendar-icon"></ion-icon>';
+    
     background-image: url(../../../assets/date.png);
-    transform: scale(3);
+    transform: scale(2);
+    
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 3px;

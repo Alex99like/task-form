@@ -5,10 +5,11 @@ import { FieldDate } from '../fieldDate/FieldData'
 import './form.css'
 
 const icons = {
-  firstName: '<b class="icon">FN</b>',
-  lastName: '<b class="icon">LN</b>',
+  firstName: '<ion-icon class="icon" name="person"></ion-icon>',
+  lastName: '<ion-icon class="icon" name="people"></ion-icon>',
   email: '<ion-icon class="icon" name="mail"></ion-icon>',
   password: '<ion-icon class="icon" name="lock-closed"></ion-icon>',
+  repeatPassword: '<ion-icon class="icon" name="document-lock"></ion-icon>'
 }
 
 export class FormElement {
@@ -20,7 +21,7 @@ export class FormElement {
       date: new FieldDate('date'),
       email: new Field('email', 'Email', 'email', icons.email),
       password: new Field('password', 'Password', 'password', icons.password),
-      passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.password)
+      passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.repeatPassword)
     }
     this.button = new Button('submit')
   }
