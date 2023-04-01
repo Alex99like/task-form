@@ -24,6 +24,7 @@ export class FormElement {
       passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.repeatPassword)
     }
     this.button = new Button('submit')
+    this.errors = false
   }
 
   createForm() {
@@ -37,7 +38,9 @@ export class FormElement {
     Object.values(this.fields).forEach(el => {
       el.input.addEventListener('input', (e) => {
         const { name } = e.target
-        this.checkError(name)
+        this.checkFields(name)
+        // this.checkErrors()
+        this.disabledSubmit()
       })
     })
   }
@@ -53,12 +56,23 @@ export class FormElement {
     return body
   }
 
+  disabledSubmit() {
+    console.log(this.errors)
+    if (this.errors) {
+      this.button.toggleActive(true)
+    } else {
+      this.button.toggleActive(false)
+    }
+  }
+
   checkErrors() {
-    this.checkError('', true)
+    this.checkFields('', true)
     const errors = Object.values(this.fields)
       .map(el => el.error)
       .filter(item => !!item)
-
+      
+    this.disabledSubmit()
+    
     return !errors.length
   }
 
@@ -70,13 +84,15 @@ export class FormElement {
         const data = this.farmData()
         console.log(data)
       }
+
+      this.disabledSubmit()
     })
   }
 
-  checkError(name, check = false) {
+  checkFields(name, check = false) {
     const { firstName, lastName, email, date, password, passwordRepeat } = this.fields
     const { checkFieldText, checkDateError, checkEmailError, checkPassword, checkPasswordRepeat } = ErrorForm
-  
+    
     if (name === firstName.name || check) checkFieldText(firstName, 2, 25)
     if (name === lastName.name || check) checkFieldText(lastName, 2, 25)
     if (name === date.name || check) checkDateError(date)

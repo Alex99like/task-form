@@ -4,6 +4,19 @@ export class Button {
   constructor(type = 'button') {
     this.button = document.createElement('button')
     this.button.type = type
+    this.button.classList.add('active')
+
+    // this.button.disabled = true
+  }     
+
+  toggleActive(value) {
+    if (value) {
+      this.button.disabled = true
+      this.button.classList.remove('active')
+    } else {
+      this.button.disabled = false
+      this.button.classList.add('active')
+    }
   }
 
   render(node) {

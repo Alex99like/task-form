@@ -1,10 +1,63 @@
 .submit-form {
+    position: relative;
     font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
     font-family: inherit;
     border-radius: 10px;
+    min-height: 60px;
     border: none;
-    background-color: hsla(0, 0%, 100%, 0.314);
+    width: 180px;
+    /* background-color: hsla(0, 0%, 100%, 0.314); */
+    background-color: transparent;
     color: #fff;
     cursor: pointer;
+    z-index: 10;
+    border: 5px solid transparent;
+    transition: .2s;
+    overflow: hidden;
+}
+
+.submit-form:disabled {
+  transform: scale(0.8);
+  color: #ffffff81;
+  background-color: #2b2b2c;
+}
+
+.submit-form.active:hover {
+  text-shadow: 2px 2px 3px rgb(91, 91, 196);
+}
+
+.submit-form.active::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 400%;
+  background: linear-gradient(180deg, rgba(21, 116, 199, 0.709) 9%, rgba(20,18,154,1) 25%, rgba(191,24,55,1) 63%, rgba(210,18,77,0.34811253561253563) 87%);
+  box-shadow: 2px 2px 2px transparent;
+  animation: rotate 1.9s linear infinite;
+}
+
+.submit-form.active:hover::before {
+    width: 120%;
+    transition: .4s all;
+  }
+
+.submit-form.active::after {
+  content: 'SUBMIT';
+  position: absolute;
+  inset: 4px;
+  background: #2b2b2c;
+  border-radius: 5px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
