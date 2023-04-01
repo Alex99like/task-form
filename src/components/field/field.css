@@ -8,16 +8,18 @@
   .form-container .field::after {
     content: '';
     position: absolute;
-    width: 88%;
+    width: 100%;
     height: 4px;
     background: #b7b5b55a;
     left: 0;
     bottom: 0;
     border-radius: 10px;
+    width: 88%;
   }
   
   .form-container .field input {
     outline: none;
+    width: 88%;
     border: none;
     background: transparent;
     color: #fff;
@@ -31,7 +33,7 @@
     right: 0;
     bottom: 3px;
     font-size: 26px;
-    color: rgb(131, 19, 146);
+    color: rgb(212, 208, 212);
   }
   
   .form-container .field b.icon {

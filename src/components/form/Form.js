@@ -41,6 +41,9 @@ export class FormElement {
     ErrorForm.checkFieldText(this.fields.firstName, 2, 25)
     ErrorForm.checkFieldText(this.fields.lastName, 2, 25)
     ErrorForm.checkDateError(this.fields.date)
+    ErrorForm.checkEmailError(this.fields.email)
+    ErrorForm.checkPassword(this.fields.password)
+    ErrorForm.checkPasswordRepeat(this.fields.password, this.fields.passwordRepeat)
   }
 
   render(main) {
