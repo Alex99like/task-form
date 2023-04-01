@@ -18,7 +18,7 @@ export class ErrorForm {
       field.clearError()
     }
 
-    this.filedRequired(field)
+    ErrorForm.filedRequired(field)
   }
 
   static checkDateError(field) {
@@ -28,7 +28,7 @@ export class ErrorForm {
       field.clearError()
     }
 
-    this.filedRequired(field)
+    ErrorForm.filedRequired(field)
   }
 
   static checkEmailError(field) {
@@ -40,7 +40,7 @@ export class ErrorForm {
       field.clearError()
     }
 
-    this.filedRequired(field)
+    ErrorForm.filedRequired(field)
   }
 
   static checkPassword(password) {
@@ -62,7 +62,7 @@ export class ErrorForm {
       password.clearError()
     }
 
-    this.filedRequired(password)
+    ErrorForm.filedRequired(password)
   }
 
   static checkPasswordRepeat(password, repeatPassword) {
@@ -74,6 +74,6 @@ export class ErrorForm {
       repeatPassword.clearError()
     }
 
-    this.filedRequired(repeatPassword)
+    ErrorForm.filedRequired(repeatPassword)
   }
 }

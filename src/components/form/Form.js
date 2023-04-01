@@ -34,15 +34,19 @@ export class FormElement {
 
   handlerChange() {
     Object.values(this.fields).forEach(el => {
-      el.input.addEventListener('input', () => {
-        this.checkError()
+      el.input.addEventListener('input', (e) => {
+        const { name } = e.target
+        this.checkError(name)
       })
     })
   }
 
+  
+
   submitHandler() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
+      this.checkError('', true)
       const body = {}
       Array.from(this.form.elements)
         .forEach((element) => {
@@ -52,13 +56,16 @@ export class FormElement {
     })
   }
 
-  checkError() {
-    ErrorForm.checkFieldText(this.fields.firstName, 2, 25)
-    ErrorForm.checkFieldText(this.fields.lastName, 2, 25)
-    ErrorForm.checkDateError(this.fields.date)
-    ErrorForm.checkEmailError(this.fields.email)
-    ErrorForm.checkPassword(this.fields.password)
-    ErrorForm.checkPasswordRepeat(this.fields.password, this.fields.passwordRepeat)
+  checkError(name, check = false) {
+    const { firstName, lastName, email, date, password, passwordRepeat } = this.fields
+    const { checkFieldText, checkDateError, checkEmailError, checkPassword, checkPasswordRepeat } = ErrorForm
+
+    if (name === firstName.name || check) checkFieldText(firstName, 2, 25)
+    if (name === lastName.name || check) checkFieldText(lastName, 2, 25)
+    if (name === date.name || check) checkDateError(date)
+    if (name === email.name || check) checkEmailError(email)
+    if (name === password.name || check) checkPassword(password)
+    if (name === passwordRepeat.name || check) checkPasswordRepeat(password, passwordRepeat)
   }
 
   render(main) {
