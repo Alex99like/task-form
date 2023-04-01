@@ -1,12 +1,13 @@
 import './fieldDate.css'
 
 export class FieldDate {
-  constructor() {
+  constructor(name) {
     this.container = document.createElement('label')
 
     this.input = document.createElement('input')
     this.input.type = 'date'
-    this.input.name = 'date'
+    this.name = name
+    this.input.name = name
     this.errorField = document.createElement('span')
     this.error = ''
   }
@@ -19,11 +20,13 @@ export class FieldDate {
 
   addError(text) {
     this.errorField.textContent = text
+    this.error = text
     this.errorField.classList.add('active')
   }
 
   clearError() {
     this.errorField.textContent = ''
+    this.error = ''
     this.errorField.classList.remove('active')
   }
 

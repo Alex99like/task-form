@@ -17,7 +17,7 @@ export class FormElement {
     this.fields = {
       firstName: new Field('first-name', 'First Name', 'text', icons.firstName),
       lastName: new Field('last-name', 'Last Name', 'text', icons.lastName),
-      date: new FieldDate(),
+      date: new FieldDate('date'),
       email: new Field('email', 'Email', 'email', icons.email),
       password: new Field('password', 'Password', 'password', icons.password),
       passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.password)
@@ -41,25 +41,41 @@ export class FormElement {
     })
   }
 
-  
+  farmData() {
+    const body = {}
+    Array.from(this.form.elements)
+      .forEach((element) => {
+        const { name, value } = element
+        if (name) body[name] = value
+      })
+
+    return body
+  }
+
+  checkErrors() {
+    this.checkError('', true)
+    const errors = Object.values(this.fields)
+      .map(el => el.error)
+      .filter(item => !!item)
+
+    return !errors.length
+  }
 
   submitHandler() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
-      this.checkError('', true)
-      const body = {}
-      Array.from(this.form.elements)
-        .forEach((element) => {
-          const { name, value } = element
-          if (name) body[name] = value
-        })
+
+      if (this.checkErrors()) {
+        const data = this.farmData()
+        console.log(data)
+      }
     })
   }
 
   checkError(name, check = false) {
     const { firstName, lastName, email, date, password, passwordRepeat } = this.fields
     const { checkFieldText, checkDateError, checkEmailError, checkPassword, checkPasswordRepeat } = ErrorForm
-
+  
     if (name === firstName.name || check) checkFieldText(firstName, 2, 25)
     if (name === lastName.name || check) checkFieldText(lastName, 2, 25)
     if (name === date.name || check) checkDateError(date)

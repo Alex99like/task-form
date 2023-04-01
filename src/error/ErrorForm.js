@@ -1,18 +1,19 @@
 export class ErrorForm {
   static filedRequired(field) {
     const { input } = field
-
-    if (input.value.length <= 0) {
+   
+    if (input.value.trim().length <= 0) {
       field.addError('this field is required')
     }
   }
 
   static checkFieldText(field, min, max) {
     const { input } = field
+    const value = input.value.trim()
 
-    if (input.value.length < min) {
+    if (value.length < min) {
       field.addError(`min count of characters ${min}`)
-    } else if (input.value.length > max) {
+    } else if (value.length > max) {
       field.addError(`max count of characters ${max}`)
     } else {
       field.clearError()
@@ -27,7 +28,7 @@ export class ErrorForm {
     } else {
       field.clearError()
     }
-
+    
     ErrorForm.filedRequired(field)
   }
 

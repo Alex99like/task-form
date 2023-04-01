@@ -43,11 +43,13 @@ export class Field {
 
   addError(text) {
     this.errorField.textContent = text
+    this.error = text
     this.errorField.classList.add('active')
   }
 
   clearError() {
     this.errorField.textContent = ''
+    this.error = ''
     this.errorField.classList.remove('active')
   }
 
