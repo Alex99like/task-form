@@ -24,7 +24,7 @@ export class FormElement {
       passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.repeatPassword)
     }
     this.button = new Button('submit')
-    this.errors = false
+    this.errors = []
   }
 
   createForm() {
@@ -39,7 +39,11 @@ export class FormElement {
       el.input.addEventListener('input', (e) => {
         const { name } = e.target
         this.checkFields(name)
-        // this.checkErrors()
+
+        this.errors = Object.values(this.fields)
+          .map(el => el.error)
+          .filter(item => !!item)
+        
         this.disabledSubmit()
       })
     })
@@ -57,8 +61,7 @@ export class FormElement {
   }
 
   disabledSubmit() {
-    console.log(this.errors)
-    if (this.errors) {
+    if (!!this.errors.length) {
       this.button.toggleActive(true)
     } else {
       this.button.toggleActive(false)
@@ -67,21 +70,21 @@ export class FormElement {
 
   checkErrors() {
     this.checkFields('', true)
-    const errors = Object.values(this.fields)
+    this.errors = Object.values(this.fields)
       .map(el => el.error)
       .filter(item => !!item)
       
     this.disabledSubmit()
-    
-    return !errors.length
   }
 
   submitHandler() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
+      this.checkErrors()
 
-      if (this.checkErrors()) {
+      if (!this.errors.length) {
         const data = this.farmData()
+        console.log('Form')
         console.log(data)
       }
 
