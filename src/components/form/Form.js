@@ -1,4 +1,5 @@
 import { ErrorForm } from '../../error/ErrorForm'
+import { Button } from '../button/Button'
 import { Field } from '../field/Field'
 import { FieldDate } from '../fieldDate/FieldData'
 import './form.css'
@@ -21,12 +22,14 @@ export class FormElement {
       password: new Field('password', 'Password', 'password', icons.password),
       passwordRepeat: new Field('password-repeat', 'Password Repeat', 'password', icons.password)
     }
+    this.button = new Button('submit')
   }
 
   createForm() {
     Object.values(this.fields).forEach(el => {
       el.render(this.form)
     })
+    this.button.render(this.form)
   }
 
   handlerChange() {
@@ -34,6 +37,18 @@ export class FormElement {
       el.input.addEventListener('input', () => {
         this.checkError()
       })
+    })
+  }
+
+  submitHandler() {
+    this.form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const body = {}
+      Array.from(this.form.elements)
+        .forEach((element) => {
+          const { name, value } = element
+          if (name) body[name] = value
+        })
     })
   }
 
@@ -49,6 +64,7 @@ export class FormElement {
   render(main) {
     this.createForm()
     this.handlerChange()
+    this.submitHandler()
     this.form.classList.add('form-container')
     main.append(this.form)
   }

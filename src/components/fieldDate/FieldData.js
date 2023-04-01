@@ -6,7 +6,9 @@ export class FieldDate {
 
     this.input = document.createElement('input')
     this.input.type = 'date'
+    this.input.name = 'date'
     this.errorField = document.createElement('span')
+    this.error = ''
   }
 
   createField() {

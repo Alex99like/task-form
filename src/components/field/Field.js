@@ -13,6 +13,7 @@ export class Field {
     this.type = type
 
     this.errorField = document.createElement('span')
+    this.error = ''
   }
 
   checkActive() {

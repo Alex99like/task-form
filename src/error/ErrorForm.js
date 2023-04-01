@@ -1,7 +1,15 @@
 export class ErrorForm {
+  static filedRequired(field) {
+    const { input } = field
+
+    if (input.value.length <= 0) {
+      field.addError('this field is required')
+    }
+  }
+
   static checkFieldText(field, min, max) {
     const { input } = field
-    
+
     if (input.value.length < min) {
       field.addError(`min count of characters ${min}`)
     } else if (input.value.length > max) {
@@ -9,6 +17,8 @@ export class ErrorForm {
     } else {
       field.clearError()
     }
+
+    this.filedRequired(field)
   }
 
   static checkDateError(field) {
@@ -17,6 +27,8 @@ export class ErrorForm {
     } else {
       field.clearError()
     }
+
+    this.filedRequired(field)
   }
 
   static checkEmailError(field) {
@@ -27,6 +39,8 @@ export class ErrorForm {
     } else {
       field.clearError()
     }
+
+    this.filedRequired(field)
   }
 
   static checkPassword(password) {
@@ -47,6 +61,8 @@ export class ErrorForm {
     } else {
       password.clearError()
     }
+
+    this.filedRequired(password)
   }
 
   static checkPasswordRepeat(password, repeatPassword) {
@@ -57,5 +73,7 @@ export class ErrorForm {
     } else {
       repeatPassword.clearError()
     }
+
+    this.filedRequired(repeatPassword)
   }
 }

@@ -1,0 +1,10 @@
+.submit-form {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: 10px;
+    border: none;
+    background-color: hsla(0, 0%, 100%, 0.314);
+    color: #fff;
+    cursor: pointer;
+}
