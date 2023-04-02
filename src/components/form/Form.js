@@ -80,26 +80,34 @@ export class FormElement {
     this.disabledSubmit()
   }
 
-  submitHandler() {
+  async submitHandler() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
-      this.loader.render(this.form)
       this.checkErrors()
-      setTimeout(() => this.loader.container.remove(), 1000)
       if (!this.errors.length) {
         const data = this.farmData()
-        console.log('Form')
-        console.log(data)
+        this.sendRequest(data)
       }
-
       this.disabledSubmit()
     })
   }
 
-  sendRequest(body) {
+  async sendRequest(body) {
     try {
-      
-    } catch(e) {}
+      this.loader.render(this.form)
+      const data = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        body: JSON.stringify(body),
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      const result = await data.json()
+      console.log(result)
+      this.loader.container.remove()
+    } catch(e) {
+      this.loader.container.remove()
+    } 
   }
 
   checkFields(name, check = false) {
