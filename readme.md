@@ -10,4 +10,4 @@
 #### development build ```npm run build-dev```
 #### production build ```npm run build-prod```
 
-### [Deploy Link](https://alex99like.github.io/tz-form/)
+### [Deploy Link](https://alex99like.github.io/task-form/)
