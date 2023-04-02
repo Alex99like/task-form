@@ -1,9 +1,11 @@
+import { ERROR_DATE_MESSAGE, ERROR_EMAIL_MESSAGE, ERROR_NAME_MESSAGE, ERROR_PASSWORD_MESSAGE, ERROR_REQUIRED_MESSAGE } from "../constants/errorMessageForm"
+
 export class ErrorForm {
   static filedRequired(field) {
     const { input } = field
    
     if (input.value.trim().length <= 0) {
-      field.addError('this field is required')
+      field.addError(ERROR_REQUIRED_MESSAGE)
     }
   }
 
@@ -12,9 +14,9 @@ export class ErrorForm {
     const value = input.value.trim()
 
     if (value.length < min) {
-      field.addError(`min count of characters ${min}`)
+      field.addError(ERROR_NAME_MESSAGE.min(min))
     } else if (value.length > max) {
-      field.addError(`max count of characters ${max}`)
+      field.addError(ERROR_NAME_MESSAGE.max(max))
     } else {
       field.clearError()
     }
@@ -24,7 +26,7 @@ export class ErrorForm {
 
   static checkDateError(field) {
     if (Date.now() < new Date(field.input.value).getTime()) {
-      field.addError(`No Valid Date `)
+      field.addError(ERROR_DATE_MESSAGE)
     } else {
       field.clearError()
     }
@@ -36,7 +38,7 @@ export class ErrorForm {
     const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
     if (!regex.test(field.input.value)) {
-      field.addError(`No Valid Email - format (login@mail.com)`)
+      field.addError(ERROR_EMAIL_MESSAGE)
     } else {
       field.clearError()
     }
@@ -46,19 +48,18 @@ export class ErrorForm {
 
   static checkPassword(password) {
     const value = password.input.value
-    // const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{8,}$/
     const regUpperCaseSymbol = /[A-Z]/
     const regCheckNumber = /[1-9]/
     const regSymbol = /[!@#$%]/
 
     if (value.length < 8) {
-      password.addError('min count of characters 8')
+      password.addError(ERROR_PASSWORD_MESSAGE.MIN)
     } else if (!regUpperCaseSymbol.test(value)) {
-      password.addError('1 character must be uppercase')
+      password.addError(ERROR_PASSWORD_MESSAGE.UPPERCASE)
     } else if (!regCheckNumber.test(value)) {
-      password.addError('must contain at least one digit 1-9')
+      password.addError(ERROR_PASSWORD_MESSAGE.DIGIT)
     } else if (!regSymbol.test(value)) {
-      password.addError('must contain at least one character from !@#$%')
+      password.addError(ERROR_PASSWORD_MESSAGE.SYMBOL)
     } else {
       password.clearError()
     }
@@ -70,7 +71,7 @@ export class ErrorForm {
     const valPas = password.input.value
     const repPas = repeatPassword.input.value
     if (valPas !== repPas) {
-      repeatPassword.addError(`the passwords don't match`);
+      repeatPassword.addError(ERROR_PASSWORD_MESSAGE.REPEAT);
     } else {
       repeatPassword.clearError()
     }

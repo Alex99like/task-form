@@ -52,19 +52,6 @@
 .form-container .field-date .failed.active {
   transform: scale(1);
 }
-
-  
-  /* .form-container .field::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background: #b7b5b55a;
-    left: 0;
-    bottom: 0;
-    border-radius: 10px;
-    width: 88%;
-  } */
   
   .form-container .field input {
     outline: none;
@@ -87,7 +74,6 @@
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     padding: 5px;
-    /* text-shadow: 2px 2px 2px rgb(91, 91, 196); */
   }
 
   .form-container .field .icon.focus {
@@ -103,7 +89,6 @@
   
   .form-container .field span.active  {
     position: absolute;
-    /* top: -20px; */
     text-shadow: 2px 2px 2px rgb(91, 91, 196);
     padding: 2px 4px 0px;
     transform: translate(-24px, -22px);

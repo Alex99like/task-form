@@ -5,8 +5,6 @@ export class Button {
     this.button = document.createElement('button')
     this.button.type = type
     this.button.classList.add('active')
-
-    // this.button.disabled = true
   }     
 
   toggleActive(value) {
