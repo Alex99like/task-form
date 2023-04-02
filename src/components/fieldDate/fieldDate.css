@@ -36,6 +36,14 @@
   backdrop-filter: blur(20px);
 }
 
+
+@media (max-width: 500px) {
+  .field-date {
+    width: 88%;
+    gap: 0px;
+  }
+}
+
 ::-webkit-calendar-picker-indicator{
     background-color: transparent;
     content: '<ion-icon name="calendar" class="calendar-icon"></ion-icon>';
