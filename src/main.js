@@ -1,25 +1,10 @@
+import { FormElement } from './components/form/Form';
 import './index.html'; 
 import './style.css';
 
-class FormHandler {
-  constructor() {
-    this.feilds = document.querySelectorAll('.field')
-    //this.firstName = document.querySelector('#first-name')
-    this.setActive()
-  }
+const app = new FormElement()
+const main = document.createElement('main')
+main.classList.add('main-container')
 
-  setActive() {
-    console.log(this.feilds)
-    this.feilds.forEach((el) => {
-      const input = document.querySelector('input')
-      input.addEventListener('focus', () => {
-        el.classList.add('active')
-      })
-      input.addEventListener('blur', () => {
-        el.classList.remove('active')
-      })
-    })
-  }
-}
-
-const form = new FormHandler()
+document.body.append(main)
+app.render(main)
