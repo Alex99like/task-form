@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 24px;
   }
 
 .form-container .field.focus {
@@ -94,8 +95,9 @@
     box-shadow: 2px 2px 3px rgb(91, 91, 196);
   }
   
-  .form-container .field span {
+  .form-container .field .placeholder {
     position: absolute;
+    font-size: 20px;
     left: 30px;
   }
   

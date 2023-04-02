@@ -40,6 +40,7 @@ export class Field {
     this.input.id = this.name
     this.container.classList.add('field')
     this.wrapper.classList.add('wrapper')
+    this.placeholder.classList.add('placeholder')
 
     this.wrapper.append(this.input)
     this.wrapper.append(this.placeholder)
