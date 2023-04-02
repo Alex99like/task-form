@@ -30,7 +30,7 @@ export class FormElement {
   }
 
   createForm() {
-    this.loader.render(this.form)
+    
     Object.values(this.fields).forEach(el => {
       el.render(this.form)
     })
@@ -83,8 +83,9 @@ export class FormElement {
   submitHandler() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
+      this.loader.render(this.form)
       this.checkErrors()
-
+      setTimeout(() => this.loader.container.remove(), 1000)
       if (!this.errors.length) {
         const data = this.farmData()
         console.log('Form')
@@ -93,6 +94,12 @@ export class FormElement {
 
       this.disabledSubmit()
     })
+  }
+
+  sendRequest(body) {
+    try {
+      
+    } catch(e) {}
   }
 
   checkFields(name, check = false) {

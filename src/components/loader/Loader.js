@@ -3,23 +3,24 @@ import './loader.css'
 export class Loader {
   constructor() {
     this.container = document.createElement('div')
-    // this.loaderContainer = document.createElement('div')
-    this.ring = document.createElement('div')
-    this.content = document.createElement('span')
+    this.loaderContainer = document.createElement('div')
+    this.points = []
+    this.createPoints()
+  }
+
+  createPoints() {
+    for (let i = 1; i <= 20; i++) {
+      const point = document.createElement('span')
+      point.style = `--i:${i}`
+      this.points.push(point)
+      this.loaderContainer.append(point)
+    }
   }
 
   createLoader() {
-    this.container.classList.add('loader-container')
-  
-    // this.loaderContainer.classList.add('center')
-    this.ring.classList.add('ring')
-
-    this.content.textContent = 'LOADING...'
-    this.container.append(this.ring)
-    this.container.append(this.content)
-    
-  
-    // this.container.append(this.loaderContainer)
+    this.container.classList.add('loader-container', 'no-active')
+    this.loaderContainer.classList.add('loader')
+    this.container.append(this.loaderContainer)
   }
 
   callLoader() {}
