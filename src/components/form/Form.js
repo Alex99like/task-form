@@ -2,6 +2,7 @@ import { ErrorForm } from '../../error/ErrorForm'
 import { Button } from '../button/Button'
 import { Field } from '../field/Field'
 import { FieldDate } from '../fieldDate/FieldData'
+import { Loader } from '../loader/Loader'
 import './form.css'
 
 const icons = {
@@ -14,6 +15,7 @@ const icons = {
 
 export class FormElement {
   constructor() {
+    this.loader = new Loader()
     this.form = document.createElement('form')
     this.fields = {
       firstName: new Field('first-name', 'First Name', 'text', icons.firstName),
@@ -28,6 +30,7 @@ export class FormElement {
   }
 
   createForm() {
+    this.loader.render(this.form)
     Object.values(this.fields).forEach(el => {
       el.render(this.form)
     })
