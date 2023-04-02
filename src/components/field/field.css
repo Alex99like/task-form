@@ -70,7 +70,6 @@
     outline: none;
     width: 88%;
     position: relative;
-    left: 30px;
     border: none;
     background: transparent;
     color: #fff;
@@ -79,10 +78,10 @@
   }
   
   .form-container .field .icon {
-    position: absolute;
+    position: relative;
     font-family: sans-serif;
-    left: -12px;
-    top: -3px;
+    left: -10px;
+    /* top: -3px;  */
     font-size: 22px;
     color: #fcfcfc;
     background-color: rgba(255, 255, 255, 0.15);
@@ -97,6 +96,7 @@
   
   .form-container .field .placeholder {
     position: absolute;
+    top: 2px;
     font-size: 20px;
     left: 30px;
   }

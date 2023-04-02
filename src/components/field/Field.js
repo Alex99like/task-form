@@ -53,7 +53,7 @@ export class Field {
     this.failed.classList.add('failed')
     this.container.append(this.failed)
     
-    this.wrapper.insertAdjacentHTML('beforeend', this.icon)
+    this.wrapper.insertAdjacentHTML('afterbegin', this.icon)
     this.container.append(this.wrapper)
   }
 
