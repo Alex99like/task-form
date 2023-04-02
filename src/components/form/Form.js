@@ -87,14 +87,16 @@ export class FormElement {
       if (!this.errors.length) {
         const data = this.farmData()
         this.sendRequest(data)
+      } else {
+        this.disabledSubmit()
       }
-      this.disabledSubmit()
     })
   }
 
   async sendRequest(body) {
     try {
       this.loader.render(this.form)
+      this.button.toggleActive(true)
       const data = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
         body: JSON.stringify(body),
         method: 'POST',
@@ -104,9 +106,10 @@ export class FormElement {
       })
       const result = await data.json()
       console.log(result)
-      this.loader.container.remove()
+      this.loader.successCall()
+      this.button.toggleActive(false)
     } catch(e) {
-      this.loader.container.remove()
+      this.loader.failedCall()
     } 
   }
 
